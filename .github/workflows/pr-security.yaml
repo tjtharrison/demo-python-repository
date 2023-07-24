@@ -20,9 +20,9 @@ jobs:
       - name: "bandit"
         run: |
           pip3 install bandit
-          bandit .
           
-          if [[ $? -eq 0 ]]; then
+          
+          if ! bandit .; then
             echo "No security issues found"
           else
             echo "Security issues found"
