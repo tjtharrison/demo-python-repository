@@ -1,7 +1,8 @@
-import time
 import sys
+import time
 
-def main ():
+
+def main():
     """Loops forever with increasing count.
 
     Raises:
@@ -24,4 +25,3 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         print("Exiting...")
         sys.exit(1)
-
