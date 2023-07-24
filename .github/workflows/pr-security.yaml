@@ -1,0 +1,32 @@
+name: Security
+on:
+  pull_request:
+    branches:
+        - "main"
+    paths:
+      - "**.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  code-linting:
+    name: Code Security
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Checkout code"
+        uses: "actions/checkout@v3"
+      - name: "bandit"
+        run: |
+          pip3 install bandit
+          bandit .
+          
+          #shellcheck disable=SC2181
+          if [[ $? -eq 0 ]]; then 
+            echo "No security issues found"
+          else
+            echo "Security issues found"
+            exit 1
+          fi
+          
